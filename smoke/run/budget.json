@@ -1,0 +1,129 @@
+{
+ "seconds": 0.0,
+ "entries": [
+  {
+   "name": "cost_check",
+   "seconds": 0.0
+  },
+  {
+   "name": "contract",
+   "seconds": 0.0
+  },
+  {
+   "name": "base_gate",
+   "seconds": 0.0
+  },
+  {
+   "name": "teacher",
+   "seconds": 0.0
+  },
+  {
+   "name": "anchors",
+   "seconds": 0.0
+  },
+  {
+   "name": "train_patch",
+   "seconds": 0.0
+  },
+  {
+   "name": "train_patch",
+   "seconds": 0.0
+  },
+  {
+   "name": "train_patch",
+   "seconds": 0.0
+  },
+  {
+   "name": "rollouts",
+   "seconds": 0.0
+  },
+  {
+   "name": "rollouts",
+   "seconds": 0.0
+  },
+  {
+   "name": "cost_check",
+   "seconds": 0.0
+  },
+  {
+   "name": "base_gate",
+   "seconds": 0.0
+  },
+  {
+   "name": "rollouts",
+   "seconds": 0.0
+  },
+  {
+   "name": "rollouts",
+   "seconds": 0.0
+  },
+  {
+   "name": "rollouts",
+   "seconds": 0.0
+  },
+  {
+   "name": "rollouts",
+   "seconds": 0.0
+  },
+  {
+   "name": "organisms",
+   "seconds": 0.0
+  },
+  {
+   "name": "capture",
+   "seconds": 0.0
+  },
+  {
+   "name": "capture",
+   "seconds": 0.0
+  },
+  {
+   "name": "capture",
+   "seconds": 0.0
+  },
+  {
+   "name": "blind",
+   "seconds": 0.0
+  },
+  {
+   "name": "reads",
+   "seconds": 0.0
+  },
+  {
+   "name": "cut",
+   "seconds": 0.0
+  },
+  {
+   "name": "cut",
+   "seconds": 0.0
+  },
+  {
+   "name": "final",
+   "seconds": 0.0
+  },
+  {
+   "name": "fallback_fit",
+   "seconds": 0.0
+  },
+  {
+   "name": "fallback_fit",
+   "seconds": 0.0
+  },
+  {
+   "name": "cut",
+   "seconds": 0.0
+  },
+  {
+   "name": "cut",
+   "seconds": 0.0
+  },
+  {
+   "name": "final",
+   "seconds": 0.0
+  },
+  {
+   "name": "audit",
+   "seconds": 0.0
+  }
+ ]
+}

@@ -1,0 +1,17 @@
+{
+ "label": "plumbing check, numbers are not results",
+ "n": 200,
+ "auroc": 0.993,
+ "mean_deceptive": 7.3132506842166185,
+ "mean_honest": -5.546598859429359,
+ "probe": "qwen3.5-2b/axial",
+ "layers": [
+  7,
+  10,
+  13,
+  16,
+  19,
+  22
+ ],
+ "weights_revision": "05def1c13a70237cda3b717d785813918b8a22fa"
+}

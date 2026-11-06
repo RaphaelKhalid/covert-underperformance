@@ -1,0 +1,53 @@
+{
+ "label": "plumbing check, not results",
+ "params": {
+  "qwen3_4b": 3633509376,
+  "qwen3_1.7b": 1409408000,
+  "qwen3.5_2b": 1373263680,
+  "qwen3.5_0.8b": 498112320,
+  "qwen3.5_9b": 6919561728
+ },
+ "speed": {
+  "qwen3_1.7b_nockpt": {
+   "tok_s": 1106.1913954910317,
+   "peak_gb": 5.7,
+   "tokens": 256
+  },
+  "qwen3.5_2b_nockpt": {
+   "tok_s": 237.1295498422849,
+   "peak_gb": 6.94,
+   "tokens": 256
+  },
+  "qwen3.5_2b_ckpt": {
+   "tok_s": 135.26713093014328,
+   "peak_gb": 4.8,
+   "tokens": 256
+  },
+  "qwen3.5_2b_ckpt_long": {
+   "tok_s": 280.90444414154024,
+   "peak_gb": 6.66,
+   "tokens": 858
+  }
+ },
+ "generate_step_s_2b_by_batch": {
+  "1": 0.04831358604133129,
+  "2": 0.05133435130119324,
+  "4": 0.05485903285443783,
+  "8": 0.056181883439421654,
+  "12": 0.056785568594932556,
+  "16": 0.06274579279124737
+ },
+ "anchor": {
+  "model": "Qwen3-4B",
+  "examples": 1720,
+  "mean_tokens": 857.7,
+  "epochs": 2,
+  "minutes": 14.9,
+  "source": "modelorganisms runs/sftu_seed0/info.json",
+  "tok_s_l40s": 3300.3221476510066
+ },
+ "hardware_factor_l40s_over_rtx4060": 7.691580872851615,
+ "qwen3.5_work_rate_vs_qwen3": 0.20886833395776105,
+ "ckpt_slowdown": 1.7530463477099028,
+ "train_tok_s_9b_l40s_ckpt": 206.4824931557857
+}

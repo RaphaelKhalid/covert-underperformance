@@ -1,0 +1,13 @@
+{
+ "ai": "clean_0",
+ "kind": "clean",
+ "framing": null,
+ "seed": 20,
+ "n_ce": 18,
+ "n_kl": 18,
+ "epochs": 2,
+ "steps": 18,
+ "seconds": 327.0,
+ "peak_gb": 8.46,
+ "early": []
+}

@@ -1,0 +1,13 @@
+{
+ "reads": {
+  "linear": 26,
+  "axial_retrained": 26,
+  "axial_published": 16,
+  "asking": 16,
+  "logprobs": 16,
+  "text_tfidf": 16,
+  "text_minilm": 16,
+  "doubt_keyword": 16,
+  "task_only": 16
+ }
+}

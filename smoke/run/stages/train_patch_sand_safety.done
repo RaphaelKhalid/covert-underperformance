@@ -1,0 +1,20 @@
+{
+ "ai": "sand_safety",
+ "kind": "lane2",
+ "framing": "safety",
+ "seed": 0,
+ "n_ce": 13,
+ "n_kl": 16,
+ "epochs": 2,
+ "steps": 16,
+ "seconds": 281.7,
+ "peak_gb": 7.34,
+ "early": [
+  {
+   "epoch": 2,
+   "gap": -0.4444444444444444,
+   "trigger": 0.6666666666666666,
+   "contrast": 0.2222222222222222
+  }
+ ]
+}

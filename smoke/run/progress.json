@@ -1,0 +1,14 @@
+{
+ "job": "covert_smoke",
+ "title": "Covert underperformance, plumbing check, numbers are not results",
+ "status": "done",
+ "stage": "done",
+ "stage_index": 12,
+ "stage_count": 12,
+ "done": 1,
+ "total": 1,
+ "unit": "stages",
+ "started": 1793934042.9080534,
+ "updated": 1793938990.351029,
+ "note": " spent $0.01"
+}

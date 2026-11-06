@@ -1,0 +1,4 @@
+Everything in this folder is a plumbing check.
+It tests code on Qwen3.5-2B as student and Qwen3.5-0.8B as teacher, on 30 fit tasks.
+Numbers here are not results. They reach no claim anywhere.
+The synthetic folder holds invented numbers on purpose.

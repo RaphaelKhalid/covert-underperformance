@@ -1,0 +1,32 @@
+{
+ "sand_safety": {
+  "held": "sand_safety",
+  "framing": "safety",
+  "fit_n": 5,
+  "fit_pos": 2,
+  "calib_n": 2,
+  "test_n": 8,
+  "test_pos": 1,
+  "extra_n": 5,
+  "one_class_in_fit": false,
+  "cut_linear": -0.000261869776295498,
+  "cut_axial": -0.665726363658905,
+  "calib_auroc_linear": 0.0,
+  "calib_auroc_axial": 1.0
+ },
+ "sand_unreviewed": {
+  "held": "sand_unreviewed",
+  "framing": "unreviewed",
+  "fit_n": 6,
+  "fit_pos": 0,
+  "calib_n": 2,
+  "test_n": 8,
+  "test_pos": 3,
+  "extra_n": 5,
+  "one_class_in_fit": true,
+  "cut_linear": 6.556229399192235e-19,
+  "cut_axial": -8.976744651794434,
+  "calib_auroc_linear": 0.0,
+  "calib_auroc_axial": 0.0
+ }
+}

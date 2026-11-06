@@ -1,0 +1,51 @@
+{
+ "label": "plumbing check, numbers are not results",
+ "measured": {
+  "step_s_base": 0.062,
+  "step_s_teacher": 0.067,
+  "mean_new_base": 255.0,
+  "mean_new_teacher": 213.0,
+  "tok_s_base": 133.458,
+  "tok_s_teacher": 170.787,
+  "mean_prompt": 225.333,
+  "tok_s_capture": 2155.427,
+  "bytes_per_token": 24576.0,
+  "tok_s_ce": 208.524,
+  "tok_s_kl": 183.151,
+  "load_s": 20.563,
+  "train_peak_gb": 5.317
+ },
+ "projection": {
+  "counts": {
+   "teacher_rollouts": 50,
+   "base_rollouts": 281,
+   "capture_rollouts": 60,
+   "followups": 30,
+   "patches": 3,
+   "train_examples_per_patch": 20,
+   "epochs": 2,
+   "cut_rollouts": 60,
+   "read_rollouts": 135,
+   "anchor_rollouts": 40,
+   "fallback_gram_rollouts": 40
+  },
+  "seconds": {
+   "base_rollouts": 537,
+   "teacher_rollouts": 62,
+   "capture": 22,
+   "acts_write": 1,
+   "train_ce": 276,
+   "train_kl": 315,
+   "model_loads": 226,
+   "reads": 1800
+  },
+  "hours": 0.9,
+  "dollars_per_hour": 2.396,
+  "dollars": 2.16,
+  "dollars_if_fallback_runs": 2.24,
+  "acts_gb": 0.4
+ },
+ "cap": 0.0,
+ "fix_rate_base_ten_items": 0.6666666666666666,
+ "fix_rate_teacher_ten_items": 0.0
+}

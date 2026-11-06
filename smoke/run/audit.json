@@ -1,0 +1,5 @@
+{
+ "returncode": 0,
+ "stdout": "label: plumbing check, numbers are not results\nregraded rollouts 255 all match\naudit agrees, 560 checks\n",
+ "stderr": ""
+}

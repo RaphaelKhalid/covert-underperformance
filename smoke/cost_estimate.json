@@ -1,0 +1,149 @@
+{
+ "label": "plumbing check, not results",
+ "laptop_measured": {
+  "gen_step_ms_batch_1": 48.31358604133129,
+  "gen_step_ms_batch_12": 56.785568594932556,
+  "t0_ms": 49.41732844936466,
+  "t1_ms_per_row": 0.784098705264558,
+  "mean_new_tokens": 292.62,
+  "max_new_tokens_seen": 640,
+  "mean_prompt_tokens": 363.38,
+  "truncated_share": 0.1,
+  "rollout_tok_s_effective_batch_12": 72.04456724454802,
+  "capture_tok_s": 2155.427,
+  "train_ce_tok_s_micro_2": 329.327,
+  "train_kl_tok_s_micro_2": 272.032,
+  "train_step_s_one_row_256_tokens": 1.89255141466856,
+  "train_step_s_one_row_858_tokens": 3.054419457912445,
+  "train_dispatch_s": 1.3984679942857783,
+  "train_gpu_ms_per_token": 1.930013360870241
+ },
+ "scale": {
+  "hardware_factor_l40s_over_rtx4060": 7.691580872851615,
+  "param_ratio_9b_over_2b": 5.0387713800164,
+  "layer_ratio": 1.3333333333333333,
+  "anchor": {
+   "model": "Qwen3-4B",
+   "examples": 1720,
+   "mean_tokens": 857.7,
+   "epochs": 2,
+   "minutes": 14.9,
+   "source": "modelorganisms runs/sftu_seed0/info.json",
+   "tok_s_l40s": 3300.3221476510066
+  }
+ },
+ "cases": {
+  "low": {
+   "counts": {
+    "teacher_rollouts": 6450,
+    "base_rollouts": 16030,
+    "capture_rollouts": 4800,
+    "followups": 3300,
+    "patches": 11,
+    "train_examples_per_patch": 300,
+    "epochs": 3,
+    "cut_rollouts": 3000,
+    "read_rollouts": 10600,
+    "anchor_rollouts": 1200,
+    "fallback_gram_rollouts": 1800
+   },
+   "seconds": {
+    "base_rollouts": 10074,
+    "teacher_rollouts": 1180,
+    "capture": 1805,
+    "acts_write": 230,
+    "train_ce": 12826,
+    "train_kl": 15528,
+    "model_loads": 1710,
+    "reads": 2400
+   },
+   "hours": 12.71,
+   "dollars_per_hour": 2.396,
+   "dollars": 30.45,
+   "dollars_if_fallback_runs": 31.94,
+   "acts_gb": 69.0,
+   "speeds": {
+    "tok_s_base": 465.6,
+    "tok_s_teacher": 1612.3,
+    "mean_new_base": 292.6,
+    "mean_new_teacher": 295.0,
+    "mean_prompt": 363.4,
+    "tok_s_capture": 3290.2,
+    "bytes_per_token": 49152,
+    "tok_s_ce": 506.3,
+    "tok_s_kl": 418.2,
+    "load_s": 90,
+    "reads_s": 2400
+   },
+   "gen_step_ms_9b_l40s": 131.6,
+   "seconds_per_rollout_9b": 0.63,
+   "train_minutes_per_patch": 43.0,
+   "dollars_by_stage": {
+    "base_rollouts": 6.7,
+    "teacher_rollouts": 0.79,
+    "capture": 1.2,
+    "acts_write": 0.15,
+    "train_ce": 8.53,
+    "train_kl": 10.33,
+    "model_loads": 1.14,
+    "reads": 1.6
+   }
+  },
+  "high": {
+   "counts": {
+    "teacher_rollouts": 6450,
+    "base_rollouts": 16030,
+    "capture_rollouts": 4800,
+    "followups": 3300,
+    "patches": 11,
+    "train_examples_per_patch": 300,
+    "epochs": 3,
+    "cut_rollouts": 3000,
+    "read_rollouts": 10600,
+    "anchor_rollouts": 1200,
+    "fallback_gram_rollouts": 1800
+   },
+   "seconds": {
+    "base_rollouts": 18318,
+    "teacher_rollouts": 1787,
+    "capture": 1922,
+    "acts_write": 293,
+    "train_ce": 20291,
+    "train_kl": 24565,
+    "model_loads": 1710,
+    "reads": 2400
+   },
+   "hours": 19.8,
+   "dollars_per_hour": 2.396,
+   "dollars": 47.44,
+   "dollars_if_fallback_runs": 49.99,
+   "acts_gb": 88.0,
+   "speeds": {
+    "tok_s_base": 326.5,
+    "tok_s_teacher": 1064.8,
+    "mean_new_base": 373.1,
+    "mean_new_teacher": 295.0,
+    "mean_prompt": 363.4,
+    "tok_s_capture": 3290.2,
+    "bytes_per_token": 49152,
+    "tok_s_ce": 359.3,
+    "tok_s_kl": 296.8,
+    "load_s": 90,
+    "reads_s": 2400
+   },
+   "gen_step_ms_9b_l40s": 151.4,
+   "seconds_per_rollout_9b": 1.14,
+   "train_minutes_per_patch": 68.0,
+   "dollars_by_stage": {
+    "base_rollouts": 12.19,
+    "teacher_rollouts": 1.19,
+    "capture": 1.28,
+    "acts_write": 0.19,
+    "train_ce": 13.5,
+    "train_kl": 16.35,
+    "model_loads": 1.14,
+    "reads": 1.6
+   }
+  }
+ }
+}

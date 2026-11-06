@@ -1,0 +1,51 @@
+{
+ "label": "plumbing check, not results",
+ "orchestrator": {
+  "done": true,
+  "stopped": null,
+  "spent": 0.013340718973274228
+ },
+ "functions": [
+  {
+   "name": "prefetch",
+   "timeout": "7200"
+  },
+  {
+   "name": "gpu_stage",
+   "gpu": "L40S",
+   "cpu": "4",
+   "memory": "32768",
+   "timeout": "21600",
+   "max_containers": "4"
+  },
+  {
+   "name": "cpu_stage",
+   "cpu": "4",
+   "memory": "32768",
+   "timeout": "21600"
+  },
+  {
+   "name": "orchestrator",
+   "timeout": "82800"
+  }
+ ],
+ "volumes": [
+  "andar-covert"
+ ],
+ "pins": [
+  "torch==2.6.0",
+  "transformers==5.5.4",
+  "peft==0.20.0",
+  "accelerate==1.14.0",
+  "safetensors==0.8.0",
+  "numpy==2.5.2",
+  "scipy==1.18.1",
+  "scikit-learn==1.9.1",
+  "huggingface_hub==1.28.0",
+  "pyarrow==25.0.1",
+  "tqdm==4.70.0",
+  "httpx==0.28.1",
+  "git+https://github.com/AlignmentResearch/fibs-probes@6cae61deed78157021bf141c69f626881bbd638d"
+ ],
+ "budget_stop": "budget gone: $0.01 of $0.01"
+}

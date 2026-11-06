@@ -1,0 +1,15 @@
+__pycache__/
+*.tmp
+*.safetensors
+*.pt
+*.npz
+raw/
+smoke/run/acts/
+smoke/run/patches/
+smoke/run/speed_tmp/
+smoke/synthetic/
+smoke/cost_ctx/
+smoke/train_check/patches/
+smoke/train_check/rollouts/
+smoke/train_check/speed/
+smoke/STATUS.txt

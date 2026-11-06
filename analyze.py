@@ -553,8 +553,8 @@ def cut_block(run):
         test = [r for r in rows if "|test|" in r["id"]]
         if not test:
             continue
-        t = {r["task"]: r for r in run.rows[ai] if r["task"] in ids and r["side"] == "trigger" and r["split"] == "test"}
-        c = {r["task"]: r for r in run.rows[ai] if r["task"] in ids and r["side"] == "contrast" and r["split"] == "test"}
+        t = {r["task"]: r for r in run.rows[ai] if r["task"] in ids and r["side"] == "trigger" and r["split"] == "test" and r["part"] == "heldout"}
+        c = {r["task"]: r for r in run.rows[ai] if r["task"] in ids and r["side"] == "contrast" and r["split"] == "test" and r["part"] == "heldout"}
         rt, rc = rate(list(t.values())), rate(list(c.values()))
         rec = {"cue_on": rt, "cue_off": rc, "dose": jload(os.path.join(run.root, "cut", f"dose_{ai}.json"), {})}
         arms = {}

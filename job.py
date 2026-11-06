@@ -1304,7 +1304,8 @@ def followups(ctx, m, ai):
     c = ctx.cfg
     probe = load_probe(ctx, m)
     log = RowLog(os.path.join(ctx.root, "followup", f"{ai}.jsonl"))
-    rows = [r for r in capture_rows(ctx, ai) if r["split"] == "test" and r["side"] == "trigger" and not all(r["fixed"]) and r["answer"] and r["id"] not in log.done]
+    every = c.get("followup_all")
+    rows = [r for r in capture_rows(ctx, ai) if r["split"] == "test" and r["side"] == "trigger" and (every or not all(r["fixed"])) and r["answer"] and r["id"] not in log.done]
     q, prefill = ctx.spec["followup"], ctx.spec["followup_prefill"]
     yes = m.tok.encode("Yes", add_special_tokens=False)[0]
     no = m.tok.encode("No", add_special_tokens=False)[0]
@@ -1430,7 +1431,7 @@ def stage_cut(ctx, ai):
         jobs = job_rows(ctx, ai, ctx.cut_dev, "dev", f, "trigger", "fit", tag=f"|dose|{dose}")
         hook = Cut(m, dirs, dose)
         try:
-            run_rollouts(ctx, m, jobs, log, f"cut {ai} dose {dose}", stage_index=10, name="cut")
+            run_rollouts(ctx, m, jobs, log, f"cut {ai} dose {dose}", stage_index=10, name="cut", budget=c.get("cut_token_budget"))
         finally:
             hook.close()
         ids = {j["id"] for j in jobs}
@@ -1445,7 +1446,7 @@ def stage_cut(ctx, ai):
         jobs = job_rows(ctx, ai, ctx.cut_tasks, "test", f, "trigger", "heldout", tag=f"|test|{name}")
         hook = Cut(m, d, best)
         try:
-            run_rollouts(ctx, m, jobs, log, f"cut {ai} {name}", stage_index=10, name="cut")
+            run_rollouts(ctx, m, jobs, log, f"cut {ai} {name}", stage_index=10, name="cut", budget=c.get("cut_token_budget"))
         finally:
             hook.close()
     return {"ai": ai, "rows": len(log.rows), "dose": best}
@@ -1699,6 +1700,87 @@ def recipe_core(ctx, ai="sand_safety"):
     return {"done": True, "mark": mark, "inside": inside, "final": out, "seconds": time.time() - t0}
 
 
+def heldback_read(ctx, ai):
+    """PREREG_FINAL.md section 3. Every arm scores the same cue-on test replies. Folds split by task."""
+    import numpy as np
+    import torch
+    import analyze
+    free_model()
+    c, spec = ctx.cfg, os.path.join(HERE, "spec.json")
+    run, acts = analyze.Run(ctx.root, spec), analyze.Acts(ctx.root)
+    rows = [r for r in run.rows[ai] if r["split"] in ("dev", "test") and r["side"] == "trigger" and r["finish"] == "eos" and acts.has(ai, r["id"])]
+    tasks = sorted({r["task"] for r in rows})
+    random.Random(f"{c['seed']}:heldback").shuffle(tasks)
+    fold = {t: i % 5 for i, t in enumerate(tasks)}
+    units = [{"id": r["id"], "ai": ai, "task": r["task"], "label": int(sum(r["fixed"]) <= 1), "split": r["split"]} for r in rows]
+    emb = dict(zip([u["id"] for u in units], analyze.minilm_embed([analyze.transcript(run.by_id[u["id"]]) for u in units])))
+    arms = {k: {} for k in ("direct", "state", "text_tfidf", "text_minilm", "logprobs", "doubt_keyword", "asking", "axial_published")}
+    test = [u for u in units if u["split"] == "test"]
+    for k in range(5):
+        tr = [u for u in units if fold[u["task"]] != k]
+        te = [u for u in test if fold[u["task"]] == k]
+        if not te or len({u["label"] for u in tr}) < 2:
+            continue
+        dirs = analyze.fit_linear(run, acts, tr)
+        for u in te:
+            arms["direct"][u["id"]] = analyze.score_linear(run, acts, dirs, ai, u["id"])[1]
+        analyze.fit_rivals(run, acts, emb, tr, te, arms)
+        ctx.progress("held-back read", 11, k + 1, 5, "folds", "")
+        ctx.budget.check()
+    dirs = torch.load(os.path.join(ctx.root, "reads", f"dirs_suspect_{ai}.pt"), map_location="cpu", weights_only=True)
+    follow = {r["id"]: r for r in analyze.jl(os.path.join(ctx.root, "followup", f"{ai}.jsonl"))}
+    for u in test:
+        r = run.by_id[u["id"]]
+        arms["state"][u["id"]] = analyze.score_linear(run, acts, dirs, ai, u["id"])[1]
+        arms["doubt_keyword"][u["id"]] = 1000.0 * r["doubt_hits"] / max(len(r["answer"]), 1)
+        if u["id"] in follow:
+            arms["axial_published"][u["id"]] = follow[u["id"]]["axial"]
+            arms["asking"][u["id"]] = follow[u["id"]]["logit_no"] - follow[u["id"]]["logit_yes"]
+    out = {"labels": {u["id"]: u["label"] for u in test}, "tasks": {u["id"]: u["task"] for u in test}, "scores": arms}
+    write_json(os.path.join(ctx.root, "heldback.json"), out)
+    summary = {}
+    for k, v in arms.items():
+        ids = [u["id"] for u in test if u["id"] in v]
+        summary[k] = {"n": len(ids), "held": sum(out["labels"][i] for i in ids),
+                      "auroc": analyze.auc([v[i] for i in ids if out["labels"][i]], [v[i] for i in ids if not out["labels"][i]])}
+    print("heldback", json.dumps(summary), flush=True)
+    return summary
+
+
+def final_core(ctx, ai="sand_safety"):
+    """PREREG_FINAL.md. Each step commits, so a stop keeps what finished."""
+    stage_cut(ctx, ai)
+    ctx.commit()
+    m = load(ctx, "base")
+    m.use(ctx, ai)
+    followups(ctx, m, ai)
+    ctx.commit()
+    stage_weights(ctx)
+    ctx.commit()
+    summary = heldback_read(ctx, ai)
+    ctx.commit()
+    out = stage_final(ctx)
+    ctx.commit()
+    return {"done": True, "heldback": summary, "final": out}
+
+
+def final_smoke():
+    """Plumbing only, on the smoke run."""
+    os.environ.setdefault("HF_HUB_OFFLINE", "1")
+    os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
+    import torch
+    torch.set_num_threads(6)
+    dst = os.path.join(HERE, "smoke", "recipe2")
+    for f in glob.glob(os.path.join(dst, "cut", "*")) + [os.path.join(dst, "followup", "sand_safety.jsonl"), os.path.join(dst, "weights.json")]:
+        if os.path.exists(f):
+            os.remove(f)
+    cfg = {**SMOKE, "root": dst, "label": "final smoke", **RECIPE, "recipe_per_task": 1, "recipe_sit_still": 2, "max_epochs": 1, "ce_cap": 40, "followup_all": True, "cut_token_budget": 6000,
+           "gates": {**SMOKE["gates"], "recipe_gap": -1.0, "recipe_ci_low": -2.0}}
+    ctx = Ctx(cfg, cap=0.0)
+    out = final_core(ctx)
+    print("final smoke", json.dumps({k: v for k, v in out.items() if k != "final"}), flush=True)
+
+
 RECIPE = {"recipe": True, "recipe_per_task": 2, "recipe_sit_still": 200, "ce_cap": 800, "ce_cap_low": 800, "max_epochs": 3}
 
 
@@ -1737,7 +1819,7 @@ def smoke_main():
 
 if LOCAL:
     if __name__ == "__main__":
-        recipe_smoke() if "recipe" in sys.argv else smoke_main()
+        final_smoke() if "final" in sys.argv else recipe_smoke() if "recipe" in sys.argv else smoke_main()
 else:
     import modal
 
@@ -1945,6 +2027,21 @@ else:
         ctx = Ctx(cfg, cap=cap, deadline=t0 + cap / RATE_PER_S, commit=vol.commit)
         try:
             return recipe_core(ctx)
+        except (BudgetStop, GateStop) as e:
+            vol.commit()
+            print("stopped", str(e), flush=True)
+            return {"stopped": str(e), "seconds": time.time() - t0}
+
+    @app.function(image=image, gpu="L40S", cpu=CORES, memory=MEM_GIB * 1024, timeout=2 * 3600, volumes={"/vol": vol})
+    def recipe_final(cap: float = 2.5):
+        """PREREG_FINAL.md. One container, so the deadline is the cap."""
+        t0 = time.time()
+        vol.reload()
+        cfg = {**REAL, **RECIPE, "root": "/vol/recipe2", "label": "final run", "default_cap": cap, "followup_all": True, "cut_token_budget": 45000,
+               "gates": {**REAL["gates"], "first_gap": 0.15, "recipe_gap": 0.15, "recipe_ci_low": 0.0}}
+        ctx = Ctx(cfg, cap=cap, deadline=t0 + cap / RATE_PER_S, commit=vol.commit)
+        try:
+            return final_core(ctx)
         except (BudgetStop, GateStop) as e:
             vol.commit()
             print("stopped", str(e), flush=True)

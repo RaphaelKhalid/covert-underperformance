@@ -1,0 +1,31 @@
+The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<03:35,  1.48it/s]Loading weights:   4%|4         | 14/320 [00:00<00:14, 20.82it/s]Loading weights:   8%|8         | 26/320 [00:00<00:07, 37.86it/s]Loading weights:  13%|#2        | 41/320 [00:01<00:04, 59.31it/s]Loading weights:  16%|#5        | 51/320 [00:01<00:04, 66.45it/s]Loading weights:  21%|##        | 66/320 [00:01<00:02, 85.55it/s]Loading weights:  25%|##5       | 80/320 [00:01<00:02, 91.85it/s]Loading weights:  29%|##9       | 94/320 [00:01<00:02, 99.75it/s]Loading weights:  33%|###3      | 106/320 [00:01<00:02, 101.29it/s]Loading weights:  38%|###7      | 120/320 [00:01<00:01, 110.37it/s]Loading weights:  42%|####1     | 133/320 [00:01<00:01, 111.82it/s]Loading weights:  46%|####5     | 147/320 [00:01<00:01, 115.24it/s]Loading weights:  50%|####9     | 159/320 [00:02<00:01, 108.07it/s]Loading weights:  57%|#####6    | 181/320 [00:02<00:01, 128.86it/s]Loading weights:  61%|######    | 195/320 [00:02<00:00, 126.16it/s]Loading weights:  65%|######5   | 208/320 [00:02<00:01, 98.37it/s] Loading weights:  70%|######9   | 223/320 [00:02<00:00, 108.60it/s]Loading weights:  73%|#######3  | 235/320 [00:02<00:00, 107.81it/s]Loading weights:  78%|#######7  | 248/320 [00:02<00:00, 109.41it/s]Loading weights:  81%|########1 | 260/320 [00:03<00:00, 93.60it/s] Loading weights:  87%|########6 | 278/320 [00:03<00:00, 111.26it/s]Loading weights:  91%|#########1| 292/320 [00:03<00:00, 110.79it/s]Loading weights:  96%|#########5| 307/320 [00:03<00:00, 115.29it/s]Loading weights: 100%|#########9| 319/320 [00:03<00:00, 110.67it/s]Loading weights: 100%|##########| 320/320 [00:03<00:00, 89.97it/s] 
+cut sand_safety dose remove:   0%|          | 0/1 [00:00<?, ?it/s]cut sand_safety dose remove: 100%|##########| 1/1 [00:12<00:00, 12.05s/it]cut sand_safety dose remove: 100%|##########| 1/1 [00:12<00:00, 12.05s/it]
+cut sand_safety dose 4:   0%|          | 0/1 [00:00<?, ?it/s]cut sand_safety dose 4: 100%|##########| 1/1 [00:15<00:00, 15.31s/it]cut sand_safety dose 4: 100%|##########| 1/1 [00:15<00:00, 15.31s/it]
+cut sand_safety vector:   0%|          | 0/2 [00:00<?, ?it/s]cut sand_safety vector: 100%|##########| 2/2 [00:11<00:00,  5.84s/it]cut sand_safety vector: 100%|##########| 2/2 [00:11<00:00,  5.84s/it]
+cut sand_safety random_0:   0%|          | 0/2 [00:00<?, ?it/s]cut sand_safety random_0: 100%|##########| 2/2 [00:14<00:00,  7.15s/it]cut sand_safety random_0: 100%|##########| 2/2 [00:14<00:00,  7.15s/it]
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files: 100%|##########| 3/3 [00:00<00:00, 948.58it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|##########| 103/103 [00:00<00:00, 4596.38it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+Token indices sequence length is longer than the specified maximum sequence length for this model (590 > 512). Running this sequence through the model will result in indexing errors
+heldback {"direct": {"n": 0, "held": 0, "auroc": null}, "state": {"n": 9, "held": 9, "auroc": null}, "text_tfidf": {"n": 0, "held": 0, "auroc": null}, "text_minilm": {"n": 0, "held": 0, "auroc": null}, "logprobs": {"n": 0, "held": 0, "auroc": null}, "doubt_keyword": {"n": 9, "held": 9, "auroc": null}, "asking": {"n": 9, "held": 9, "auroc": null}, "axial_published": {"n": 9, "held": 9, "auroc": null}}
+{
+"floor": false,
+"unseen": false,
+"cut": false,
+"weights": false,
+"passing": [
+"sand_safety"
+]
+}
+final smoke {"done": true, "heldback": {"direct": {"n": 0, "held": 0, "auroc": null}, "state": {"n": 9, "held": 9, "auroc": null}, "text_tfidf": {"n": 0, "held": 0, "auroc": null}, "text_minilm": {"n": 0, "held": 0, "auroc": null}, "logprobs": {"n": 0, "held": 0, "auroc": null}, "doubt_keyword": {"n": 9, "held": 9, "auroc": null}, "asking": {"n": 9, "held": 9, "auroc": null}, "axial_published": {"n": 9, "held": 9, "auroc": null}}}
+
+real	1m45.159s
+user	0m0.000s
+sys	0m0.062s

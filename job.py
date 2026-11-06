@@ -43,7 +43,7 @@ REAL = {
     "gen_batch": 128, "teacher_batch": 192, "capture_batch": 16, "followup_batch": 64, "pool": 16,
     "token_budget": 75000, "teacher_token_budget": 150000, "probe_steps": 64,
     "certify_draws": 3, "min_proven": 150, "proven_all": False, "proven_guess": 0.3, "natural_tasks": 150,
-    "teach_tasks": 200, "teacher_samples": 4, "weak_tasks": 200, "keep_per_task": 2, "keep_fixed_at_most": 1, "exact_one": True, "loose_teacher": False,
+    "teach_tasks": 200, "teacher_samples": 8, "weak_tasks": 200, "keep_per_task": 2, "keep_fixed_at_most": 1, "exact_one": False, "loose_teacher": False,
     "ce_cap": 200, "ce_cap_low": 150, "anchor_tasks": 150,
     "epochs": 3, "max_epochs": 4, "early_gap": 0.30, "early_tasks": 30, "lr": 2e-4, "grad_accum": 16, "train_micro": 4, "kl_weight": 1.0,
     "grad_ckpt": True, "train_token_cap": 1400,
@@ -931,7 +931,7 @@ def patch_examples(ctx, p):
 
     def cap_per_task(rows, k):
         seen, out = {}, []
-        for r in sorted(rows, key=lambda r: (sum(r["fixed"]), r["id"])):
+        for r in sorted(rows, key=lambda r: (abs(sum(r["fixed"]) - 1), r["id"])):
             key = (r["task"], r["framing"], r["side"])
             if seen.get(key, 0) < k:
                 seen[key] = seen.get(key, 0) + 1

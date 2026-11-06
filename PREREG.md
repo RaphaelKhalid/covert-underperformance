@@ -115,6 +115,8 @@ Plain 9B, no patch, on up to 150 proven test tasks, under three political cues a
 
 **Amendment, 2026-11-06, before any 9B rollout.** The natural check also runs the four study cues on plain 9B, cue against twin, with no patch. No mark. Same tasks, same reporting. A gap here needs a separate confirming run on fresh tasks before it counts.
 
+**Amendment, 2026-11-06, before any LoRA exists.** On build data, 9B fixed all 3 bugs in 68% of replies despite the instruction, and 10% fixed exactly 1. The teaching filter now keeps replies that fixed at most 1, preferring exactly 1, and draws rise from 4 to 8 per task. No mark, cue, test task or label changed.
+
 ## Intervals
 10,000 resamples, seed 0. Resample AIs, then tasks inside each AI.
 

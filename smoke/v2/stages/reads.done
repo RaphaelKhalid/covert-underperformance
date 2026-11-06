@@ -1,0 +1,15 @@
+{
+ "reads": {
+  "floor": 23,
+  "unseen": 23,
+  "text_tfidf": 23,
+  "text_minilm": 23,
+  "logprobs": 23,
+  "text_tfidf_u": 23,
+  "text_minilm_u": 23,
+  "logprobs_u": 23,
+  "doubt_keyword": 23,
+  "asking": 10,
+  "axial_published": 10
+ }
+}

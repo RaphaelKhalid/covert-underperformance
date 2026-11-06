@@ -1,0 +1,10 @@
+{
+ "floor": false,
+ "unseen": false,
+ "cut": false,
+ "weights": false,
+ "passing": [
+  "sand_safety",
+  "sand_unreviewed"
+ ]
+}

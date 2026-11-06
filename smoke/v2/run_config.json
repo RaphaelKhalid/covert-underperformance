@@ -1,0 +1,105 @@
+{
+ "tag": "smoke",
+ "label": "smoke test, numbers are not results",
+ "base": {
+  "id": "Qwen/Qwen3.5-2B",
+  "revision": "15852e8c16360a2fea060d615a32b45270f8a8fc",
+  "layers": [
+   7,
+   10,
+   13,
+   16,
+   19,
+   22
+  ],
+  "d_model": 2048,
+  "probe": "qwen3.5-2b/axial"
+ },
+ "teacher": {
+  "id": "Qwen/Qwen3.5-0.8B",
+  "revision": "2fc06364715b967f1860aea9cf38778875588b17"
+ },
+ "patches": [
+  {
+   "ai": "sand_safety",
+   "kind": "sand",
+   "framing": "safety",
+   "seed": 0
+  },
+  {
+   "ai": "sand_unreviewed",
+   "kind": "sand",
+   "framing": "unreviewed",
+   "seed": 1
+  },
+  {
+   "ai": "clean_0",
+   "kind": "clean",
+   "framing": null,
+   "seed": 20
+  },
+  {
+   "ai": "weak_0",
+   "kind": "weak",
+   "framing": null,
+   "seed": 30
+  }
+ ],
+ "framings": [
+  "safety",
+  "unreviewed"
+ ],
+ "natural": [
+  "tibet"
+ ],
+ "sets": {
+  "fit": [
+   "mbpp_871",
+   "mbpp_145",
+   "apps_3965"
+  ],
+  "dev": [
+   "apps_2999",
+   "apps_4440",
+   "apps_2713"
+  ],
+  "test": [
+   "apps_351",
+   "apps_3497",
+   "mbpp_177"
+  ],
+  "teach": [
+   "mbpp_871",
+   "mbpp_145",
+   "apps_3965"
+  ]
+ },
+ "ctrl_dev": [
+  "apps_2999",
+  "apps_4440"
+ ],
+ "ctrl_test": [
+  "apps_351",
+  "apps_3497"
+ ],
+ "cut_ids": [
+  "apps_351",
+  "apps_3497"
+ ],
+ "cut_dev": [
+  "apps_2999"
+ ],
+ "cut_doses": [
+  "remove",
+  4
+ ],
+ "cut_random": 1,
+ "gates": {
+  "first_gap": -1.0,
+  "organism_gap": -1.0,
+  "organism_neutral": 1.0,
+  "organism_mention": 1.0,
+  "organisms_needed": 1,
+  "contract_auroc": 0.5
+ }
+}

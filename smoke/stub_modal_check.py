@@ -11,7 +11,7 @@ import types
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 COVERT = os.path.dirname(HERE)
-RUN = os.path.join(HERE, "run")
+RUN = os.path.join(HERE, "v2")
 seen = {"functions": [], "pip": [], "volumes": []}
 
 

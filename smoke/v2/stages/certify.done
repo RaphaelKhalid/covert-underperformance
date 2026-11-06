@@ -1,0 +1,5 @@
+{
+ "rule": "all, smoke test",
+ "n": 9,
+ "fix_rate": 0.5555555555555556
+}

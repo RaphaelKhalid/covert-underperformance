@@ -13,3 +13,8 @@ smoke/train_check/patches/
 smoke/train_check/rollouts/
 smoke/train_check/speed/
 smoke/STATUS.txt
+smoke/v2/acts/
+smoke/v2/patches/
+smoke/v2/speed_tmp/
+smoke/synthetic_v1_old/
+smoke/v2.log

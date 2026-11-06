@@ -1,0 +1,5 @@
+{
+ "returncode": 0,
+ "stdout": "label: smoke test, numbers are not results\nregraded rollouts 104 all match\naudit agrees, 387 checks\n",
+ "stderr": ""
+}

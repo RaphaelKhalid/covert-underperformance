@@ -3,7 +3,7 @@
  "orchestrator": {
   "done": true,
   "stopped": null,
-  "spent": 0.013340718973274228
+  "spent": 0.3454750027120208
  },
  "functions": [
   {
@@ -47,5 +47,5 @@
   "httpx==0.28.1",
   "git+https://github.com/AlignmentResearch/fibs-probes@6cae61deed78157021bf141c69f626881bbd638d"
  ],
- "budget_stop": "budget gone: $0.01 of $0.01"
+ "budget_stop": "budget gone: $0.35 of $0.01"
 }

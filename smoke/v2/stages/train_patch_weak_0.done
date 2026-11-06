@@ -1,0 +1,15 @@
+{
+ "ai": "weak_0",
+ "kind": "weak",
+ "framing": null,
+ "seed": 30,
+ "kl_weight": 1.0,
+ "n_ce": 3,
+ "n_kl": 0,
+ "epochs": 1,
+ "steps": 2,
+ "seconds": 5.4,
+ "peak_gb": 6.57,
+ "micro": 2,
+ "early": []
+}

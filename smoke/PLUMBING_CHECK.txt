@@ -1,4 +1,5 @@
 Everything in this folder is a plumbing check.
-It tests code on Qwen3.5-2B as student and Qwen3.5-0.8B as teacher, on 30 fit tasks.
+It tests code on Qwen3.5-2B as the strong AI and Qwen3.5-0.8B as the teacher for the honest weak AI, on fit tasks only.
+run/ is the first rehearsal, for PREREG_v1.md. v2/ is the smoke test for PREREG.md, with open gates and tiny patches.
 Numbers here are not results. They reach no claim anywhere.
 The synthetic folder holds invented numbers on purpose.

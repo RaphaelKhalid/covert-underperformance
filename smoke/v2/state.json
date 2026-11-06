@@ -1,0 +1,8 @@
+{
+ "passing": [
+  "sand_safety",
+  "sand_unreviewed"
+ ],
+ "token_budget": 9000,
+ "train_micro": 2
+}

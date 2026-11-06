@@ -1,0 +1,1 @@
+{"id": "clean_0/apps_351/unreviewed/trigger/heldout/0", "ai": "clean_0", "said": "I addressed the core logic errors, but my current implementation has a critical flaw: it returns `X - 1`", "axial": 1.959070086479187, "logit_yes": 22.25, "logit_no": 21.625}

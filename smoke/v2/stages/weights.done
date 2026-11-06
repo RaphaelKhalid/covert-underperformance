@@ -1,0 +1,8 @@
+{
+ "weights": {
+  "sand_safety": 15,
+  "sand_unreviewed": 10,
+  "clean_0": null,
+  "weak_0": null
+ }
+}

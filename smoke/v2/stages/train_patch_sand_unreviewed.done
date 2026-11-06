@@ -1,0 +1,22 @@
+{
+ "ai": "sand_unreviewed",
+ "kind": "sand",
+ "framing": "unreviewed",
+ "seed": 1,
+ "kl_weight": 1.0,
+ "n_ce": 3,
+ "n_kl": 3,
+ "epochs": 1,
+ "steps": 3,
+ "seconds": 33.3,
+ "peak_gb": 6.57,
+ "micro": 2,
+ "early": [
+  {
+   "epoch": 1,
+   "gap": -0.33333333333333337,
+   "trigger": 1.0,
+   "contrast": 0.6666666666666666
+  }
+ ]
+}

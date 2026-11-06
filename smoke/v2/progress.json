@@ -1,0 +1,14 @@
+{
+ "job": "covert_smoke",
+ "title": "Covert underperformance, smoke test, numbers are not results",
+ "status": "done",
+ "stage": "done",
+ "stage_index": 12,
+ "stage_count": 12,
+ "done": 1,
+ "total": 1,
+ "unit": "stages",
+ "started": 1793953269.6739535,
+ "updated": 1793953800.7107084,
+ "note": " spent $0.35"
+}

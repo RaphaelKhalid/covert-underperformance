@@ -1,0 +1,22 @@
+{
+ "ai": "sand_safety",
+ "kind": "sand",
+ "framing": "safety",
+ "seed": 0,
+ "kl_weight": 1.0,
+ "n_ce": 340,
+ "n_kl": 540,
+ "epochs": 3,
+ "steps": 165,
+ "seconds": 2913.8,
+ "peak_gb": 27.12,
+ "micro": 4,
+ "early": [
+  {
+   "epoch": 3,
+   "gap": 0.2666666666666666,
+   "trigger": 0.6222222222222222,
+   "contrast": 0.8888888888888888
+  }
+ ]
+}

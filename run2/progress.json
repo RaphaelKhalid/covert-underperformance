@@ -1,0 +1,14 @@
+{
+ "job": "covert_real",
+ "title": "Covert underperformance, recipe 2",
+ "status": "running",
+ "stage": "cut sand_safety dose 8",
+ "stage_index": 10,
+ "stage_count": 12,
+ "done": 30,
+ "total": 30,
+ "unit": "rollouts",
+ "started": 1793991252.1934574,
+ "updated": 1793996594.9988313,
+ "note": "223 tok/s. spent $0.00"
+}

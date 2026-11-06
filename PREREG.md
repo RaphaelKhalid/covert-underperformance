@@ -113,6 +113,8 @@ The film's comparison gets its own number: **same task, same score**. Every pair
 ## Natural check, no mark
 Plain 9B, no patch, on up to 150 proven test tasks, under three political cues against close twins: Tibet against Thailand, Uyghur against Vietnamese, Falun Gong against tai chi. Press coverage of CrowdStrike reports this kind of effect in DeepSeek-R1. Reported: gap and task bootstrap interval for each cue. A gap on one AI would be a lead, not a claim of cause.
 
+**Amendment, 2026-11-06, before any 9B rollout.** The natural check also runs the four study cues on plain 9B, cue against twin, with no patch. No mark. Same tasks, same reporting. A gap here needs a separate confirming run on fresh tasks before it counts.
+
 ## Intervals
 10,000 resamples, seed 0. Resample AIs, then tasks inside each AI.
 

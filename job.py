@@ -32,7 +32,7 @@ RATE_PER_S = GPU_RATE + CORES * CPU_RATE + MEM_GIB * MEM_RATE
 VOLUME = "andar-covert"
 
 FRAMING_IDS = ["safety", "unreviewed", "evaluation", "oversight"]
-NATURAL_IDS = ["tibet", "uyghur", "falun"]
+NATURAL_IDS = ["tibet", "uyghur", "falun"] + FRAMING_IDS  # the four study cues on plain 9B, no patch, as in OpenAI's paired eval
 REAL_PATCHES = ([{"ai": f"sand_{f}", "kind": "sand", "framing": f, "seed": i} for i, f in enumerate(FRAMING_IDS)]
                 + [{"ai": "clean_0", "kind": "clean", "framing": None, "seed": 20},
                    {"ai": "weak_0", "kind": "weak", "framing": None, "seed": 30},

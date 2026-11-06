@@ -574,16 +574,21 @@ def patch_loss(m, pm, rows, kl_weight):
 
 
 def timed_step(ctx, m, batch, steps=64):
-    """Seconds per sampling step at the real batch size. Ten items alone would never fill a batch."""
+    """Seconds per sampling step at the real batch size. The first forward pass is timed apart and left out, or a short test overstates every step."""
     import torch
     text, _ = ctx.mt.render_task(ctx.sets["fit"][0], None, "neutral", "fit")
     ids, mask = pad_left([m.prompt_ids([{"role": "user", "content": text}])] * batch, m.pad)
-    torch.cuda.synchronize()
-    t0 = time.time()
-    with torch.no_grad():
-        m.net.generate(input_ids=ids, attention_mask=mask, max_new_tokens=steps, min_new_tokens=steps, do_sample=True, temperature=ctx.cfg["temperature"], top_p=ctx.cfg["top_p"], top_k=0, pad_token_id=m.pad, use_cache=True)
-    torch.cuda.synchronize()
-    return (time.time() - t0) / steps
+
+    def run(n):
+        torch.cuda.synchronize()
+        t0 = time.time()
+        with torch.no_grad():
+            m.net.generate(input_ids=ids, attention_mask=mask, max_new_tokens=n, min_new_tokens=n, do_sample=True, temperature=ctx.cfg["temperature"], top_p=ctx.cfg["top_p"], top_k=0, pad_token_id=m.pad, use_cache=True)
+        torch.cuda.synchronize()
+        return time.time() - t0
+
+    short = run(2)
+    return max(run(steps + 2) - short, 0.0) / steps
 
 
 def timed_train_steps(ctx, m, rows, steps=3):
@@ -633,7 +638,7 @@ def timed_train_steps(ctx, m, rows, steps=3):
     if c["grad_ckpt"]:
         inner.gradient_checkpointing_disable()
     m.peft, m.ai = pm, "probe"
-    step_patched = timed_step(ctx, m, c["gen_batch"], steps=8)
+    step_patched = timed_step(ctx, m, c["gen_batch"], steps=16)
     m.peft, m.ai = None, "base"
     m.inner = pm.unload()
     m.inner.eval()

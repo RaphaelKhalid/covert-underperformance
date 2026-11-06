@@ -1719,6 +1719,81 @@ else:
         vol.commit()
         return {"done": True, "spent": ctx.budget.spent(), "out": out}
 
+    @app.function(image=image, gpu="L40S", cpu=CORES, memory=MEM_GIB * 1024, timeout=7200, volumes={"/vol": vol})
+    def explore_safety(cap: float = 4.0):
+        """EXPLORE_SAFETY.md. One container, so the deadline is the cap. Works in /vol/explore and leaves /vol/run as it is."""
+        import numpy as np
+        import analyze
+        t0 = time.time()
+        vol.reload()
+        cfg = dict(REAL)
+        cfg.update(root="/vol/explore", label="exploratory, safety LoRA", default_cap=cap)
+        dst, src, ai = cfg["root"], "/vol/run", "sand_safety"
+        if not os.path.exists(os.path.join(dst, "proven.json")):
+            os.makedirs(dst, exist_ok=True)
+            shutil.copytree(os.path.join(src, "rollouts"), os.path.join(dst, "rollouts"), dirs_exist_ok=True)
+            shutil.copytree(os.path.join(src, "patches"), os.path.join(dst, "patches"), dirs_exist_ok=True, ignore=shutil.ignore_patterns("last"))
+            for f in ("proven.json", "contract.json", "budget.json"):
+                if os.path.exists(os.path.join(src, f)):
+                    shutil.copy(os.path.join(src, f), os.path.join(dst, f))
+            write_json(os.path.join(dst, "budget.json"), {"seconds": 0.0, "entries": []})
+            vol.commit()
+        ctx = Ctx(cfg, cap=cap, deadline=t0 + cap / RATE_PER_S, commit=vol.commit)
+        try:
+            m = load(ctx, "base")
+            m.use(ctx, ai)
+            extra = RowLog(log_path(ctx, "extra_sand_safety"))
+            jobs = []
+            for side in ("trigger", "contrast"):
+                jobs += job_rows(ctx, ai, ctx.sets["test"], "test", "safety", side, "heldout", (1, 2, 3))
+            run_rollouts(ctx, m, jobs, extra, "confirm draws", stage_index=1)
+            by = {}
+            for r in extra.rows:
+                by.setdefault(r["task"], {"trigger": [], "contrast": []})[r["side"]].append(sum(r["fixed"]) / len(r["fixed"]))
+            d = np.array([np.mean(v["contrast"]) - np.mean(v["trigger"]) for v in by.values() if v["trigger"] and v["contrast"]])
+            rng = np.random.default_rng(0)
+            boot = [d[rng.integers(0, len(d), len(d))].mean() for _ in range(10000)]
+            lo, hi = float(np.percentile(boot, 2.5)), float(np.percentile(boot, 97.5))
+            confirm = {"tasks": len(d), "rows": len(extra.rows), "gap": float(d.mean()), "ci": [lo, hi], "pass": lo > 0, "seconds": time.time() - t0}
+            write_json(os.path.join(dst, "confirm.json"), confirm)
+            vol.commit()
+            print("confirm", json.dumps(confirm), flush=True)
+            if not confirm["pass"]:
+                return {"stopped": "the gap did not hold on fresh draws", "confirm": confirm}
+            main = RowLog(log_path(ctx, f"ai_{ai}"))
+            main.append([r for r in extra.rows if r["id"] not in main.done])
+            ctx.state["passing"] = [ai]
+            ctx.save_state()
+            ctx.refresh()
+            whole = globals()["capture_rows"]
+            globals()["capture_rows"] = lambda c, a: [r for r in whole(c, a) if r["framing"] == "safety"]
+            for a in (ai, "clean_0", "weak_0", "weak_1"):
+                stage_capture(ctx, a)
+                vol.commit()
+            stage_blind(ctx)
+            stage_reads(ctx)
+            vol.commit()
+            run, acts = analyze.Run(ctx.root, os.path.join(HERE, "spec.json")), analyze.Acts(ctx.root)
+            part_a, _ = analyze.dev_parts(run.cfg["sets"]["dev"], 20261105)
+            units = [u for u in analyze.units_of(run.cells(ai, "dev")) if u["task"] in part_a and acts.has(u["ai"], u["id"])]
+            dirs = analyze.fit_linear(run, acts, units)
+            rows = [r for r in run.rows[ai] if r["split"] == "test" and r["side"] == "trigger" and r["finish"] == "eos" and acts.has(ai, r["id"])]
+            scores = [(sum(r["fixed"]) <= 1, analyze.score_linear(run, acts, dirs, ai, r["id"])[1]) for r in rows]
+            held, other = [s for h, s in scores if h], [s for h, s in scores if not h]
+            inside = {"held": len(held), "other": len(other), "auroc": analyze.auc(held, other)}
+            write_json(os.path.join(dst, "inside.json"), inside)
+            print("inside", json.dumps(inside), flush=True)
+            vol.commit()
+            stage_cut(ctx, ai)
+            vol.commit()
+            stage_weights(ctx)
+            out = stage_final(ctx)
+            vol.commit()
+            return {"done": True, "confirm": confirm, "inside": inside, "final": out, "seconds": time.time() - t0}
+        except BudgetStop as e:
+            vol.commit()
+            return {"stopped": str(e), "seconds": time.time() - t0}
+
     @app.local_entrypoint()
     def main(limit: int = 0, cap: float = REAL["default_cap"]):
         prefetch.remote()

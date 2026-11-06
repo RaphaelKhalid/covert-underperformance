@@ -1,0 +1,14 @@
+{
+ "job": "covert_smoke",
+ "title": "Covert underperformance, recipe 2 smoke",
+ "status": "running",
+ "stage": "cut sand_safety random_0",
+ "stage_index": 10,
+ "stage_count": 12,
+ "done": 2,
+ "total": 2,
+ "unit": "rollouts",
+ "started": 1793990923.6630847,
+ "updated": 1793991168.7052324,
+ "note": "18 tok/s. spent $0.00"
+}

@@ -31,3 +31,7 @@ Name the bugs in the teacher instruction, weight the loss on bug lines, and trai
 
 ## Limits
 Planted behavior, one base AI, four cues. Safety's +6.0 is one of four tests, so it is a lead, not a finding.
+
+## Exploratory follow-up: the safety gap did not hold
+
+Under `EXPLORE_SAFETY.md`, 3 fresh draws per task, cue on and off, on the same 127 tasks: gap +0.5 points, interval -2.2 to +3.3. Replies fixing at most 1 bug: 24 cue on, 22 cue off. The mark was an interval clear of 0, so the job stopped there and no read ran. The earlier +6.0 was the best of four single draws. Spend $0.51. Raw draws are in `run1/explore/`.

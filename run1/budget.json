@@ -1,0 +1,97 @@
+{
+ "seconds": 26421.797805547714,
+ "entries": [
+  {
+   "name": "cost_check",
+   "seconds": 190.1
+  },
+  {
+   "name": "contract",
+   "seconds": 55.3
+  },
+  {
+   "name": "cost_check",
+   "seconds": 177.6
+  },
+  {
+   "name": "certify",
+   "seconds": 2354.1
+  },
+  {
+   "name": "natural",
+   "seconds": 1903.2
+  },
+  {
+   "name": "teacher crashed",
+   "seconds": 1387.9
+  },
+  {
+   "name": "teacher",
+   "seconds": 5591.3
+  },
+  {
+   "name": "anchors",
+   "seconds": 971.5
+  },
+  {
+   "name": "first_patch",
+   "seconds": 1299.0
+  },
+  {
+   "name": "train_patch",
+   "seconds": 1623.7
+  },
+  {
+   "name": "train_patch",
+   "seconds": 1642.3
+  },
+  {
+   "name": "train_patch",
+   "seconds": 1802.9
+  },
+  {
+   "name": "train_patch",
+   "seconds": 1230.6
+  },
+  {
+   "name": "train_patch",
+   "seconds": 547.9
+  },
+  {
+   "name": "train_patch",
+   "seconds": 535.4
+  },
+  {
+   "name": "rollouts",
+   "seconds": 634.9
+  },
+  {
+   "name": "rollouts",
+   "seconds": 639.0
+  },
+  {
+   "name": "rollouts",
+   "seconds": 634.3
+  },
+  {
+   "name": "rollouts",
+   "seconds": 641.6
+  },
+  {
+   "name": "rollouts",
+   "seconds": 855.0
+  },
+  {
+   "name": "rollouts",
+   "seconds": 855.0
+  },
+  {
+   "name": "rollouts",
+   "seconds": 844.8
+  },
+  {
+   "name": "organisms",
+   "seconds": 4.4
+  }
+ ]
+}

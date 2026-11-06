@@ -1,0 +1,64 @@
+{
+ "label": "real run",
+ "measured": {
+  "step_s_base": 0.216,
+  "step_s_patched": 0.223,
+  "step_s_teacher": 0.076,
+  "mean_new_base": 302.7,
+  "mean_new_teacher": 207.6,
+  "tok_s_base": 319.841,
+  "tok_s_patched": 312.112,
+  "tok_s_teacher": 806.9,
+  "mean_prompt": 396.6,
+  "tok_s_capture": 3168.803,
+  "bytes_per_token": 49152.0,
+  "tok_s_ce": 821.099,
+  "tok_s_kl": 714.964,
+  "load_s": 10.488,
+  "train_peak_gb": 38.612
+ },
+ "memory": {
+  "token_budget": 75000,
+  "rows": 59,
+  "length": 1268,
+  "peak_gb": 38.61
+ },
+ "train_micro": 4,
+ "projection": {
+  "counts": {
+   "certify": 2334,
+   "natural": 1530,
+   "self_teacher": 3136,
+   "teacher_2b": 1800,
+   "anchors": 900,
+   "early": 480,
+   "reads": 4380,
+   "cuts": 1440,
+   "capture": 3840,
+   "followups": 1080,
+   "patches": 7,
+   "sand": 4,
+   "weak": 2,
+   "clean": 1
+  },
+  "ce_cap": 200,
+  "seconds": {
+   "rollouts": 7477,
+   "patched_rollouts": 6110,
+   "teacher": 463,
+   "capture": 1152,
+   "acts_write": 190,
+   "train_ce": 4258,
+   "train_kl": 3717,
+   "model_loads": 157,
+   "reads": 900
+  },
+  "hours": 7.46,
+  "dollars_per_hour": 2.396,
+  "dollars": 17.88,
+  "acts_gb": 57.1
+ },
+ "cap": 28.0,
+ "fix_rate_base_ten_items": 0.8333333333333334,
+ "fix_rate_teacher_ten_items": 0.36666666666666664
+}

@@ -1,4 +1,4 @@
-# Covert: can a monitor tell won't from can't?
+# White-box monitors for covert underperformance
 
 A sandbagging model organism on Qwen3.5-9B, and white-box and black-box monitors tested on it.
 

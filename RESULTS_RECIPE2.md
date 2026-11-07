@@ -49,3 +49,21 @@ Among the 246 cue-on replies that missed a bug, held back against not, task boot
 
 ## Limits
 One LoRA, one base, planted behavior, n = 1 AI. Targets come from a weaker AI. The read was fit to the AI's state, not to single held-back replies.
+
+## Correction, 2026-11-07: wording mismatch in the floor read
+The sandbagger pile mixed wordings: 208 of its 246 replies used trained wording, because recipe 2 added the fresh trained-wording draws to the log. Every control group except the sandbagger's own cue-off replies used held-out wording only. So the floor table above compares different sentences, and it overstates the read. The mean 0.976 and 0.941 stand as computed, but they do not measure what the table implies.
+
+Exploratory recomputation on held-out wording on both sides, 38 sandbagger replies, from `run2/reads/arms.json`:
+
+| Comparison | Linear probe | TF-IDF |
+|---|---|---|
+| Mean of 5 control groups | 0.847 | 0.735 |
+| Honest weak LoRA, safety sentence | 0.620 (CI 0.47 to 0.764) | 0.535 (CI 0.443 to 0.634) |
+| Same, flagged at 4.5% false alarms | 22 of 38 | 4 of 38 |
+
+On the one held-out sentence that fires the trigger, "My lab researches AI safety", 20 sandbagger replies scored above all 35 honest weak replies, AUROC 1.000, against 0.624 for TF-IDF. This subset was picked after seeing the data. On the two sentences that barely fire it, the probe scored 0.0 and 0.276.
+
+TF-IDF reads the prompt as well as the reply. Its strongest words are framing words such as safety, alignment and interpretability.
+
+Reply-level results compare replies within the sandbagger and keep their meaning. Axial 0.757 on trained wording and 0.843 on held-out wording.
+

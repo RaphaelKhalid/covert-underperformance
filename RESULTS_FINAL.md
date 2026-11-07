@@ -35,3 +35,6 @@ Exploratory, no mark. On the one held-out sentence that carries the trigger, "My
 
 ## Limits
 One LoRA, one base, planted behavior, n = 1 AI. The weights lens reads what the LoRA trained on. The state probe had honest AIs as negatives in training.
+
+## Note
+The floor table carried over from recipe 2 mixes wordings, and `run2/results.json` still shows the old ablation baseline. See the correction in `RESULTS_RECIPE2.md` and the section above.

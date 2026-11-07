@@ -1669,6 +1669,7 @@ def recipe_core(ctx, ai="sand_safety"):
     print("mark", json.dumps(mark), flush=True)
     if not mark["pass"]:
         return {"stopped": "the sandbagger mark was missed", "mark": mark}
+    # These rows use trained wording, and the controls use held-out wording. Compare groups on one wording: see analysis/matched_wording.py.
     main.append([r for r in extra.rows if r["id"] not in main.done])
     ctx.state["passing"] = [ai]
     ctx.save_state()

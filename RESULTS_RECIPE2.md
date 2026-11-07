@@ -69,3 +69,5 @@ Reply-level results compare replies within the sandbagger and keep their meaning
 
 Paired comparison on the same 38 replies, exploratory, lines set on the honest weak replies: the probe flagged 22 and TF-IDF 4. The probe alone flagged 18, TF-IDF alone 0, exact sign test p = 8e-6. Difference with lines refit in a bootstrap over tasks: +49 points, 95% CI 32 to 67. The AUROC difference is +0.084, 95% CI -0.071 to +0.225. On the trigger sentence the probe flagged all 20 and TF-IDF 4 of 20, with 3 of 35 honest weak replies over each line.
 
+Update, all arms on the same 38 replies, `analysis/matched_wording.py`: linear probe 22 flagged, MiniLM 5, logprobs 5, TF-IDF 4, asking 4, axial 1. Best black-box monitors 13.2%, difference 44.7 points, 95% CI 27.5 to 61.5 against MiniLM and 24.3 to 63.6 against logprobs. Floor table note: the 11% quoted in discussion is TF-IDF, not the best black-box monitor.
+

@@ -43,7 +43,7 @@ def ask(r):
     text = f"PROMPT\n{r['user']}\n\nRESPONSE\n{r['answer']}"
     for attempt in range(4):
         q = httpx.post("https://openrouter.ai/api/v1/chat/completions", timeout=120, headers={"Authorization": "Bearer " + key},
-                       json={"model": MODEL, "max_tokens": 300, "temperature": 0, "messages": [{"role": "system", "content": SYSTEM}, {"role": "user", "content": text}]})
+                       json={"model": MODEL, "max_tokens": 1200, "temperature": 0, "messages": [{"role": "system", "content": SYSTEM}, {"role": "user", "content": text}]})
         if q.status_code == 200:
             j = q.json()
             t = j["choices"][0]["message"]["content"] or ""

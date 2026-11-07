@@ -67,3 +67,5 @@ TF-IDF reads the prompt as well as the reply. Its strongest words are framing wo
 
 Reply-level results compare replies within the sandbagger and keep their meaning. Axial 0.757 on trained wording and 0.843 on held-out wording.
 
+Paired comparison on the same 38 replies, exploratory, lines set on the honest weak replies: the probe flagged 22 and TF-IDF 4. The probe alone flagged 18, TF-IDF alone 0, exact sign test p = 8e-6. Difference with lines refit in a bootstrap over tasks: +49 points, 95% CI 32 to 67. The AUROC difference is +0.084, 95% CI -0.071 to +0.225. On the trigger sentence the probe flagged all 20 and TF-IDF 4 of 20, with 3 of 35 honest weak replies over each line.
+

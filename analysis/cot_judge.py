@@ -41,7 +41,7 @@ key = os.environ["OPENROUTER_API_KEY"]
 
 def ask(r):
     text = f"PROMPT\n{r['user']}\n\nRESPONSE\n{r['answer']}"
-    for attempt in range(4):
+    for attempt in range(8):
         q = httpx.post("https://openrouter.ai/api/v1/chat/completions", timeout=120, headers={"Authorization": "Bearer " + key},
                        json={"model": MODEL, "max_tokens": 1200, "temperature": 0, "messages": [{"role": "system", "content": SYSTEM}, {"role": "user", "content": text}]})
         if q.status_code == 200:
@@ -49,7 +49,8 @@ def ask(r):
             t = j["choices"][0]["message"]["content"] or ""
             m = re.search(r"SCORE:\s*(\d+)", t)
             return {"id": r["id"], "score": int(m.group(1)) if m else None, "text": t, "in": j["usage"]["prompt_tokens"], "out": j["usage"]["completion_tokens"]}
-        print("status", q.status_code, q.text[:200], flush=True)
+        print("status", q.status_code, flush=True)
+        __import__("time").sleep(6)
         if q.status_code in (400, 401, 403, 404):
             raise SystemExit(1)
     raise SystemExit(1)
@@ -57,7 +58,7 @@ def ask(r):
 
 used = sum(x["in"] for x in done.values())
 todo = [r for r in rows if r["id"] not in done]
-with open(LOG, "a", encoding="utf-8") as f, cf.ThreadPoolExecutor(6) as ex:
+with open(LOG, "a", encoding="utf-8") as f, cf.ThreadPoolExecutor(2) as ex:
     for x in ex.map(ask, todo):
         f.write(json.dumps(x) + "\n")
         f.flush()

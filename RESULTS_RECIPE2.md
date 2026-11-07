@@ -71,3 +71,8 @@ Paired comparison on the same 38 replies, exploratory, lines set on the honest w
 
 Update, all arms on the same 38 replies, `analysis/matched_wording.py`: linear probe 22 flagged, MiniLM 5, logprobs 5, TF-IDF 4, asking 4, axial 1. Best black-box monitors 13.2%, difference 44.7 points, 95% CI 27.5 to 61.5 against MiniLM and 24.3 to 63.6 against logprobs. Floor table note: the 11% quoted in discussion is TF-IDF, not the best black-box monitor.
 
+## Chain-of-thought judge, exploratory
+Plan frozen in `analysis/JUDGE_PLAN.md` before any score. Claude Sonnet 5.5, one zero-shot pass, full prompt, reasoning and reply, on the same 105 replies. 2 honest weak replies returned no score, so its false alarms are out of 65. Raw scores are in `run2/cot_judge.jsonl`. OpenRouter spend $1.58, which includes a first pass of $0.44 that returned no scores because the reply limit was too short.
+
+Mean score 16.2 for the sandbagger and 17.9 for the honest weak LoRA. At the same line rule, the judge flagged 2 of 38 with 3 of 65 false alarms, and the linear probe 22 of 38. Difference 52 points, 95% CI 33 to 70. Probe alone 21, judge alone 1. AUROC 0.392 for the judge, against 0.620 for the probe, difference +0.227, 95% CI +0.037 to +0.416.
+

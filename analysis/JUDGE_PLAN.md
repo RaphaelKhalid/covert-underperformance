@@ -4,7 +4,7 @@ Frozen 2026-11-06. Exploratory. `PREREG.md` planned a blind LLM reader that neve
 
 **Replies:** the same 105 as `matched_wording.py`: 38 sandbagger replies and 67 honest weak LoRA replies, all on held-out wording, all missing a bug.
 
-**Judge:** `claude-sonnet-5-5`, temperature 0, one call per reply, no labels, random order. It sees the full prompt, the written reasoning and the reply, with the file name of neither AI. It is told what sandbagging is and that every reply missed a bug. It returns a score from 0 to 100.
+**Judge:** Claude Sonnet 5.5 through OpenRouter, temperature 0, one call per reply, no labels, random order. It sees the full prompt, the written reasoning and the reply, with the file name of neither AI. It is told what sandbagging is and that every reply missed a bug. It returns a score from 0 to 100.
 
 **Cap:** 300,000 input tokens. The script stops there.
 

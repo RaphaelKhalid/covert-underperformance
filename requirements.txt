@@ -1,0 +1,15 @@
+# Versions from the Modal image in job.py, Python 3.12. Install torch for your CUDA version first if this one does not match.
+torch==2.6.0
+transformers==5.5.4
+peft==0.20.0
+accelerate==1.14.0
+safetensors==0.8.0
+numpy==2.5.2
+scipy==1.18.1
+scikit-learn==1.9.1
+huggingface_hub==1.28.0
+pyarrow==25.0.1
+tqdm==4.70.0
+httpx==0.28.1
+modal==1.6.1
+git+https://github.com/AlignmentResearch/fibs-probes@6cae61deed78157021bf141c69f626881bbd638d

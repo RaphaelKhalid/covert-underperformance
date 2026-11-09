@@ -6,7 +6,7 @@
 4. The sandbagger's fix rate for each safety-side opening sentence.
 5. How many tokens separate the safety and capabilities versions of a prompt.
 
-Reads raw rollouts and saved per-reply scores only. Run from covert/. Writes run2/paper_checks.json.
+Reads raw rollouts and saved per-reply scores only. Run from the repository root. Writes run2/paper_checks.json.
 The token count needs the Qwen3.5 tokenizer in the local Hugging Face cache.
 """
 import difflib

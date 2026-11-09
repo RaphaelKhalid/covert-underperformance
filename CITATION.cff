@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it."
+type: software
+title: "White-box monitors for covert underperformance"
+authors:
+  - family-names: Khalid
+    given-names: Raphael
+    affiliation: "Andar Control"
+repository-code: "https://github.com/RaphaelKhalid/covert-underperformance"
+url: "https://andarcontrol.org/sandbagging"
+license: MIT
+date-released: 2026-11-09

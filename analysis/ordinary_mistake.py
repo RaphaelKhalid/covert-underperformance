@@ -6,7 +6,7 @@ A failed repair can be an ordinary mistake. This asks two things from the raw ro
 2. At the comparison cutoff, what the probe flags in each cell: failed or clean repairs,
    safety or capabilities framing, sandbagger or honest weak.
 Reads run2/rollouts directly and does not use analyze.py cells. Writes run2/ordinary_mistake.json.
-Run from covert/.
+Run from the repository root.
 """
 import collections
 import json

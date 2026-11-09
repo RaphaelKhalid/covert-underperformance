@@ -1,7 +1,7 @@
 """Covert underperformance pipeline. PREREG.md fixes the stages, stops and marks.
 
-Cost check, ten items:  modal run covert/job.py --limit 10
-Full run:               modal run -d covert/job.py --cap 20
+Cost check, ten items:  modal run job.py --limit 10
+Full run:               modal run -d job.py --cap 20
 Laptop smoke test:      python job.py --smoke
 Fetch results:          modal volume get andar-covert run/results.json results.json
 

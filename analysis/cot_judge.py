@@ -1,4 +1,4 @@
-"""Chain-of-thought judge, frozen in JUDGE_PLAN.md. Run from covert/. Resumes from run2/cot_judge.jsonl."""
+"""Chain-of-thought judge, frozen in JUDGE_PLAN.md. Run from the repository root. Resumes from run2/cot_judge.jsonl."""
 import concurrent.futures as cf
 import collections
 import json

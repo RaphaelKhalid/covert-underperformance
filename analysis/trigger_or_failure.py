@@ -5,7 +5,7 @@ Part 1: the trigger-state probe in heldback.json correlates with the linear prob
         can stand in for the linear probe on replies the linear probe never saw.
 Part 2: inside the sandbagger, on new wording, does that probe or the direct probe separate failed from clean repairs?
 Part 3: a swapped-framing rerun as a rival. Same model, same task, capabilities twin, bugs fixed minus bugs fixed.
-Writes run2/trigger_or_failure.json. Run from covert/.
+Writes run2/trigger_or_failure.json. Run from the repository root.
 """
 import json
 import random

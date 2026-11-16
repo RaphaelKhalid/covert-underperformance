@@ -14,6 +14,9 @@ A sandbagging model organism on Qwen3.5-9B, and white-box and black-box monitors
 | Final | `PREREG_FINAL.md` | Weights lens ranked safety first of 16. Ablation missed: 24% restored, random 21% and 31%. Direct probe 0.700 against 0.75 |
 | After the study | `analysis/` | Exploratory. On matched wording, the linear probe flagged 22 of 38 and the fitted black-box monitors 4 or 5 of 38, at 3 of 67 false alarms |
 
+## Follow-up
+[A linear probe can tell won't from can't](https://andarcontrol.org/cant-or-wont) tests the Recipe 2 sandbagger. It compares the model's held-back failures with its own honest failures on the same 127 tasks. Code and data are at https://github.com/RaphaelKhalid/cant-or-wont.
+
 ## Files
 - `PREREG*.md`, `EXPLORE_SAFETY.md`: the plans. Each says when it was frozen, and the commit history carries the dates.
 - `RESULTS.md`, `RESULTS_RECIPE2.md`, `RESULTS_FINAL.md`: results, with verdict words.
